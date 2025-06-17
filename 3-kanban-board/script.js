@@ -26,52 +26,62 @@ function loadTasks() {
   }
 }
 
-function createTaskElement(text, id = Date.now().toString) {
+function createTaskElement(text, id = Date.now().toString()) {
   const task = document.createElement("div");
   task.className = "task";
   task.textContent = text;
   task.dataset.id = id;
   task.draggable = true;
 
-  task.addEventListener("dragstart", (e) => {
-    draggedTask = task;
-    e.dataTransfer.effectAllowed = "move";
-    setTimeout(() => task.classList.add("hidden"), 0);
-  });
+  task.addEventListener("dragstart", handleDragStart);
 
-  task.addEventListener("dragend", () => {
-    draggedTask = null;
-    task.classList.remove("hidden");
-    saveTasks();
-  });
+  task.addEventListener("dragend", handleDragEnd);
 
   return task;
 }
 
-taskForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const taskText = taskInput.value.trim();
-  if(taskText) {
-    const task = createTaskElement(taskText);
-    document.getElementById("todo").appendChild(task);
-    taskInput.value = "";
-    saveTasks();
-  }
-});
+taskForm.addEventListener("submit", handleTaskSubmit);
 
 columnContainers.forEach((column) => {
-  column.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = "move";
-  });
+  column.addEventListener("dragover", handleDragOver);
 
-  column.addEventListener("drop", () => {
-    const taskList = column.querySelector(".task-list");
-    if(draggedTask && taskList) {
-      taskList.appendChild(draggedTask);
-      saveTasks();
-    }
-  });
+  column.addEventListener("drop", handleDrop);
 });
+
+function handleDragStart(e) {
+  draggedTask = this;
+  e.dataTransfer.effectAllowed = "move";
+  setTimeout(() => this.classList.add("hidden"), 0);
+}
+
+function handleDragEnd() {
+  this.classList.remove("hidden");
+  draggedTask = null;
+  saveTasks();
+}
+
+function handleTaskSubmit(e) {
+  e.preventDefault();
+  const text = taskInput.value.trim();
+  if (!text) return;
+
+  const task = createTaskElement(text);
+  document.getElementById("todo").appendChild(task);
+  taskInput.value = "";
+  saveTasks();
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+}
+
+function handleDrop(e) {
+  const taskList = this.querySelector(".task-list");
+  if (draggedTask && taskList) {
+    taskList.appendChild(draggedTask);
+    saveTasks();
+  }
+}
 
 loadTasks();
