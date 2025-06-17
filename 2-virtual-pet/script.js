@@ -1,24 +1,36 @@
-const hungerEl = document.getElementById("hunger");
-const energyEl = document.getElementById("energy");
-const happinessEl = document.getElementById("happiness");
+const statEls = {
+  hunger: document.getElementById("hunger"),
+  energy: document.getElementById("energy"),
+  happiness: document.getElementById("happiness"),
+};
+
 const petImage = document.getElementById("petImage");
 
 const feedBtn = document.getElementById("feedBtn");
 const playBtn = document.getElementById("playBtn");
 const restBtn = document.getElementById("restBtn");
 
-let hunger = 5;
-let energy = 5;
-let happiness = 5;
+
+const pet = {
+  hunger: 5,
+  energy: 5,
+  happiness: 5
+};
+
+const moodImages = {
+  happy: "assets/Happy_Axel_Tamagotchi.GIF",
+  sad: "assets/Sad_Axel_Tamagotchi.GIF",
+  dead: "assets/Dead_Axel_Tamagotchi.GIF"
+};
 
 function clampStat(value) {
   return Math.max(0, Math.min(10, value));
 }
 
 function getMood() {
-  if (hunger === 10 || energy === 0 || happiness === 0) {
+  if (pet.hunger === 10 || pet.energy === 0 || pet.happiness === 0) {
       return "dead";
-  } else if (hunger > 8 || energy < 3 || happiness < 3) {
+  } else if (pet.hunger > 8 || pet.energy < 3 || pet.happiness < 3) {
       return "sad";
   } else {
       return "happy";
@@ -26,54 +38,41 @@ function getMood() {
 }
 
 function updatePetImage() {
-  const mood = getMood();
-  switch (mood) {
-      case "dead":
-          petImage.src = "assets/Dead_Axel_Tamagotchi.GIF";
-          break;
-      case "sad":
-          petImage.src = "assets/Sad_Axel_Tamagotchi.GIF";
-          break;
-      case "happy":
-          petImage.src = "assets/Happy_Axel_Tamagotchi.GIF";
-          break;
-  }
+  petImage.src = moodImages[getMood()];
 }
 
 function updateStats() {
-  hungerEl.textContent = hunger;
-  energyEl.textContent = energy;
-  happinessEl.textContent = happiness;
+  Object.keys(statEls).forEach(stat => {
+    statEls[stat].textContent = pet[stat];
+  });
   updatePetImage();
 }
 
-feedBtn.addEventListener("click", () => {
+function performAction(changes) {
   if (getMood() === "dead") return;
-  hunger = clampStat(hunger - 2);
-  happiness = clampStat(happiness + 1);
+  Object.entries(changes).forEach(([stat, delta]) => {
+    pet[stat] = clampStat(pet[stat] + delta);
+  });
   updateStats();
+}
+
+feedBtn.addEventListener("click", () => {
+  performAction({ hunger: -2, happiness: +1 });
 });
 
 playBtn.addEventListener("click", () => {
-  if (getMood() === "dead") return;
-  happiness = clampStat(happiness + 2);
-  energy = clampStat(energy - 1);
-  hunger = clampStat(hunger + 1);
-  updateStats();
+  performAction({ happiness: +2, energy: -1, hunger: +1 });
 });
 
 restBtn.addEventListener("click", () => {
-  if (getMood() === "dead") return;
-  energy = clampStat(energy + 3);
-  hunger = clampStat(hunger + 1);
-  updateStats();
+  performAction({ energy: +3, hunger: +1 });
 });
 
 function decayStats() {
   if (getMood() === "dead") return;
-  hunger = clampStat(hunger + 1);
-  energy = clampStat(energy - 1);
-  happiness = clampStat(happiness - 1);
+  pet.hunger = clampStat(pet.hunger + 1);
+  pet.energy = clampStat(pet.energy - 1);
+  pet.happiness = clampStat(pet.happiness - 1);
   updateStats();
 }
 
