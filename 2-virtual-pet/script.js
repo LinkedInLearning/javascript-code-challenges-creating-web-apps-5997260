@@ -89,46 +89,18 @@ reportBtn.addEventListener("click", () => {
 });
 
 function getHealthReportHTML() {
-  let hungerStatus, energyStatus, happinessStatus;
-
-  // Hunger
-  if (hunger <= 3) {
-    hungerStatus = "Not hungry";
-  } else if (hunger <= 7) {
-    hungerStatus = "Getting a bit hungry";
-  } else {
-    hungerStatus = "Very hungry!";
-  }
-
-  // Energy
-  if (energy >= 7) {
-    energyStatus = "Full of energy";
-  } else if (energy >= 4) {
-    energyStatus = "A little tired";
-  } else {
-    energyStatus = "Exhausted";
-  }
-
-  // Happiness
-  if (happiness >= 7) {
-    happinessStatus = "Super happy";
-  } else if (happiness >= 4) {
-    happinessStatus = "Doing okay";
-  } else {
-    happinessStatus = "Feeling sad";
-  }
 
   return `
       <h2>Pet Health Report</h2>
   <ul>
     <li><strong>Hunger:</strong> ${pet.hunger} – ${
-    hunger > 8 ? "Very hungry" : "Okay"
+    pet.hunger > 8 ? "Very hungry" : "Okay"
   }</li>
     <li><strong>Energy:</strong> ${pet.energy} – ${
-    energy < 3 ? "Exhausted" : "Energized"
+    pet.energy < 3 ? "Exhausted" : "Energized"
   }</li>
     <li><strong>Happiness:</strong> ${pet.happiness} – ${
-    happiness < 3 ? "Feeling sad" : "Feeling good"
+    pet.happiness < 3 ? "Feeling sad" : "Feeling good"
   }</li>
   </ul>
 `;
