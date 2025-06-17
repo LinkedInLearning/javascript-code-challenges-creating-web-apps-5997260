@@ -48,12 +48,14 @@ function updateStats() {
 }
 
 feedBtn.addEventListener("click", () => {
+  if (getMood() === "dead") return;
   hunger = clampStat(hunger - 2);
   happiness = clampStat(happiness + 1);
   updateStats();
 });
 
 playBtn.addEventListener("click", () => {
+  if (getMood() === "dead") return;
   happiness = clampStat(happiness + 2);
   energy = clampStat(energy - 1);
   hunger = clampStat(hunger + 1);
@@ -61,9 +63,19 @@ playBtn.addEventListener("click", () => {
 });
 
 restBtn.addEventListener("click", () => {
+  if (getMood() === "dead") return;
   energy = clampStat(energy + 3);
   hunger = clampStat(hunger + 1);
   updateStats();
 });
 
+function decayStats() {
+  if (getMood() === "dead") return;
+  hunger = clampStat(hunger + 1);
+  energy = clampStat(energy - 1);
+  happiness = clampStat(happiness - 1);
+  updateStats();
+}
+
 updateStats();
+setInterval(decayStats, 10000);
