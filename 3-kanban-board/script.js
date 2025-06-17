@@ -26,12 +26,28 @@ function loadTasks() {
   }
 }
 
+function deleteTaskFromStorage(id) {
+  const tasks = JSON.parse(localStorage.getItem("kanbanTasks")) || [];
+  const updated = tasks.filter((task) => task.id !== id);
+  localStorage.setItem("kanbanTasks", JSON.stringify(updated));
+}
+
 function createTaskElement(text, id = Date.now().toString()) {
   const task = document.createElement("div");
   task.className = "task";
   task.textContent = text;
   task.dataset.id = id;
   task.draggable = true;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "❌";
+  deleteBtn.className = "delete-btn";
+  deleteBtn.addEventListener("click", () => {
+    task.remove();
+    deleteTaskFromStorage(id);
+  });
+
+  task.appendChild(deleteBtn);
 
   task.addEventListener("dragstart", handleDragStart);
 

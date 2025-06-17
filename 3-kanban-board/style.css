@@ -92,3 +92,17 @@ button:hover {
 .task.hidden {
   display: none;
 }
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 16px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-btn:hover {
+  color: #d11a2a;
+}
