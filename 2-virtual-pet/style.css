@@ -46,7 +46,7 @@ h1 {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 55%;
+  width: 40%;
   height: auto;
   transform: translate(-50%, -50%);
   image-rendering: pixelated;
@@ -57,10 +57,7 @@ h1 {
 
 /* Buttons at the bottom center */
 .actions {
-  position: absolute;
   bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   gap: 0.5rem;
   justify-content: center;
@@ -85,4 +82,59 @@ h1 {
   background-color: #005f7f;
   box-shadow: 0 0 5px #0ff, 2px 2px #001a26;
   transform: scale(1.05);
+}
+
+.bottom-panel {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.health-report {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 600px;
+  background-color: #f9fbfd;
+  border: 2px dashed #0073b1;
+  border-radius: 12px;
+  text-align: left;
+  padding: 20px;
+  color: #003344;
+  font-family: monospace;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 5;
+}
+
+.health-report.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.health-report h2 {
+  color: #0073b1;
+  margin-bottom: 10px;
+}
+
+.health-report ul {
+  list-style: none;
+  padding: 0;
+}
+
+.health-report li {
+  margin: 8px 0;
+  font-size: 16px;
 }
