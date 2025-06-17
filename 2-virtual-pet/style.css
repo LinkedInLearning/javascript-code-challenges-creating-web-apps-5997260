@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  background: #001f2e;
+  color: #aefeff;
+  height: 100vh;
+  overflow: hidden;
+  background-image: radial-gradient(ellipse at top, rgba(0, 80, 150, 0.6), transparent),
+    radial-gradient(ellipse at bottom, rgba(0, 30, 60, 0.8), transparent);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  display: none;
+}
+
+/* Position stats in top left corner */
+.pet-status {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(0, 50, 80, 0.7);
+  border: 3px dashed #00faff;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.pet-status p {
+  margin: 0.25rem 0;
+}
+
+/* Center the pet image and make it big */
+#petImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  image-rendering: pixelated;
+  border: 2px solid #003344;
+  background-color: #001820;
+  box-shadow: 0 0 10px #003344;
+}
+
+/* Buttons at the bottom center */
+.actions {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1rem;
+  padding: 0.75rem 1.2rem;
+  border: 3px solid #0ff;
+  background-color: #003a5c;
+  color: #aefeff;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 4px;
+  box-shadow: 2px 2px #001a26;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.actions button:hover {
+  background-color: #005f7f;
+  box-shadow: 0 0 5px #0ff, 2px 2px #001a26;
+  transform: scale(1.05);
+}
