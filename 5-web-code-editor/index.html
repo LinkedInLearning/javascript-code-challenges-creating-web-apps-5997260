@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" />
     <link rel="stylesheet" href="style.css" />
-
     <title>Web Code Editor</title>
   </head>
   <body>
@@ -12,9 +12,13 @@
       <h1>Web Code Editor</h1>
       <div class="editor-wrapper">
         <textarea id="codeInput" placeholder="HTML goes here..."></textarea>
+        <h2>Highlighted Code</h2>
+        <pre><code id="highlightedCode" class="language-html"></code></pre>
         <iframe id="preview" title="Live Preview"></iframe>
       </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-html.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
