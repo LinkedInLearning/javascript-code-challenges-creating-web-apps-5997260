@@ -110,3 +110,26 @@ button:hover {
 .del-btn:hover {
   transform: scale(1.2);
 }
+
+.favorite {
+  border-left: 4px solid #f0c419;
+  box-shadow: 0 4px 12px rgba(255, 208, 0, 0.2);
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  color: #f0c419;
+}
+
+.fav-btn:hover {
+  transform: scale(1.2);
+}
+
+.favorite {
+  border-left: 4px solid #f0c419;
+  box-shadow: 0 4px 12px rgba(255, 208, 0, 0.2);
+}
