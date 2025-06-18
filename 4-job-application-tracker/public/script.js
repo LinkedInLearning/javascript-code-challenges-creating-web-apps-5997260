@@ -43,6 +43,22 @@ function renderJob(job) {
     });
   });
 
+  // Favorite toggle
+  const favBtn = document.createElement("button");
+  favBtn.innerHTML = job.favorite ? "⭐" : "☆";
+  favBtn.title = "Toggle favorite";
+  favBtn.className = "fav-btn";
+  favBtn.addEventListener("click", async () => {
+    const res = await fetch(`${API_URL}/${job.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ favorite: !job.favorite }),
+    });
+    const updated = await res.json();
+    item.remove();
+    renderJob(updated); // re-render
+  });
+
   // Delete button
   const delBtn = document.createElement("button");
   delBtn.textContent = "🗑";
@@ -54,6 +70,7 @@ function renderJob(job) {
   });
 
   controls.appendChild(statusInput);
+  controls.appendChild(favBtn);
   controls.appendChild(delBtn);
 
   item.appendChild(info);

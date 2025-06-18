@@ -4,21 +4,24 @@
     "company": "Linkedin",
     "role": "Frontend Engineer",
     "date": "2025-05-12",
-    "status": "accepted"
+    "status": "accepted",
+    "favorite": true
   },
   {
     "id": 1747686000003,
     "company": "GitHub",
     "role": "Developer Advocate",
     "date": "2025-05-17",
-    "status": "rejected"
+    "status": "rejected",
+    "favorite": false
   },
   {
     "id": 1747686000004,
     "company": "Netflix",
     "role": "Software Engineer - UI",
     "date": "2025-05-20",
-    "status": "applied"
+    "status": "applied",
+    "favorite": true
   },
   {
     "id": 1747686000005,
