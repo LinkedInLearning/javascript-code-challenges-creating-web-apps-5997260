@@ -58,3 +58,18 @@ pre {
   padding: 1rem;
   overflow: auto;
 }
+
+body.dark-mode {
+  background-color: #1d2226;
+  color: #f3f6f8;
+}
+
+body.dark-mode textarea {
+  background-color: #2d2f31;
+  color: #f3f6f8;
+  border-color: #444;
+}
+
+body.dark-mode iframe {
+  background-color: #fff;
+}
