@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Job Application Tracker</title>
+  </head>
+  <body>
+    <main class="tracker-container">
+      <h1>Job Application Tracker</h1>
+      <form id="jobForm">
+        <input type="text" id="companyInput" placeholder="Company" required />
+        <input type="text" id="roleInput" placeholder="Role" required />
+        <input type="date" id="dateInput" required />
+        <button type="submit">Add Job</button>
+      </form>
+
+      <section id="jobList" class="job-list"></section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

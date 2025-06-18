@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "id": 1747686000001,
+    "company": "Linkedin",
+    "role": "Frontend Engineer",
+    "date": "2025-05-12",
+    "status": "accepted"
+  },
+  {
+    "id": 1747686000003,
+    "company": "GitHub",
+    "role": "Developer Advocate",
+    "date": "2025-05-17",
+    "status": "rejected"
+  },
+  {
+    "id": 1747686000004,
+    "company": "Netflix",
+    "role": "Software Engineer - UI",
+    "date": "2025-05-20",
+    "status": "applied"
+  },
+  {
+    "id": 1747686000005,
+    "company": "Shopify",
+    "role": "Backend Engineer",
+    "date": "2025-06-01",
+    "status": "offer"
+  },
+  {
+    "id": 1747686000006,
+    "company": "Microsoft",
+    "role": "Cloud Developer",
+    "date": "2025-06-04",
+    "status": "new"
+  }
+]
