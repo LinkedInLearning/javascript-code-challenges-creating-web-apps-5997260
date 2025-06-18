@@ -11,11 +11,20 @@ app.use(cors());
 app.use(express.json());
 
 function readJobs() {
-  return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+  try {
+    return JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+  } catch (err) {
+    console.error("Error reading jobs file:", err.message);
+    return [];
+  }
 }
 
 function writeJobs(jobs) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(jobs, null, 2));
+  try {
+    fs.writeFileSync(DATA_FILE, JSON.stringify(jobs, null, 2));
+  } catch (err) {
+    console.error("Error writing jobs file:", err.message);
+  }
 }
 
 app.get("/api/jobs", (req, res) => {

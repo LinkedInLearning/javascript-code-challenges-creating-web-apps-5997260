@@ -4,10 +4,17 @@ const API_URL = "https://super-waffle-gxrrvrq5pvvcp9r7-3000.app.github.dev/api/j
 
 async function fetchJobs() {
   jobList.innerHTML = "";
-  const res = await fetch(API_URL);
-  const jobs = await res.json();
-  jobs.forEach(renderJob);
+  try {
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Failed to fetch jobs");
+    const jobs = await res.json();
+    jobs.forEach(renderJob);
+  } catch (err) {
+    jobList.innerHTML = "<p class='error'>Could not load jobs.</p>";
+    console.error(err);
+  }
 }
+
 
 function renderJob(job) {
   const item = document.createElement("div");
