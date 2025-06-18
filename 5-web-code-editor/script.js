@@ -1,6 +1,7 @@
 const codeInput = document.getElementById("codeInput");
 const preview = document.getElementById("preview");
 const highlightedCode = document.getElementById("highlightedCode");
+const themeToggle = document.getElementById("themeToggle");
 
 function updatePreview() {
   const content = codeInput.value;
@@ -16,9 +17,11 @@ function updateHighlightedCode(content) {
   Prism.highlightElement(highlightedCode);
 }
 
-codeInput.addEventListener("input", updatePreview);
-themeToggle.addEventListener("change", () => {
+function handleThemeToggle() {
   document.body.classList.toggle("dark-mode", themeToggle.checked);
-});
+}
+
+codeInput.addEventListener("input", updatePreview);
+themeToggle.addEventListener("change", handleThemeToggle);
 
 updatePreview();
