@@ -54,4 +54,21 @@ function renderJob(job) {
   jobList.appendChild(item);
 }
 
+jobForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const company = document.getElementById("companyInput").value;
+  const role = document.getElementById("roleInput").value;
+  const date = document.getElementById("dateInput").value;
+
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ company, role, date }),
+  });
+
+  const newJob = await res.json();
+  renderJob(newJob);
+  jobForm.reset();
+});
+
 fetchJobs();
